@@ -10,7 +10,39 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" 
         crossorigin=""></script>
 
-        <script src="js/jq.js"></script>
+        <script>
+            var map = L.map("map").setView([13.8, 100.9], 6);
+
+            var sat =L.tileLayer("http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}",{
+                 maxZoom: 9,
+                 subdomains:['mt0','mt1','mt2','mt3']
+                }).addTo(map); 
+
+                var openn =L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+
+
+                const TMD_station = L.tileLayer.wms("http://localhost:8080/geoserver/tmd_station/wms?",{
+                    layers: 'tmd',
+                    format: 'image/png',
+                    transparent: true,
+                }).addTo(map);
+
+
+                const BKK_zone = L.tileLayer.wms("http://localhost:8080/geoserver/bkk/wms?",{
+                    layers: 'bma_zone',
+                    format: 'image/png',
+                    transparent: true,
+                }).addTo(map);
+
+
+
+                const baseMap = {"Google Satleite":sat,"OpenStreetmap": openn};
+                const layerr ={"TMD_station":TMD_station,"BKKZONE": BKK_zone };
+                const layerControl = L.control.layers(baseMap, layerr).addTo(map);
+        </script>
         
     </head>
     
