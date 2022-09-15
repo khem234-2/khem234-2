@@ -14,7 +14,6 @@
         <div id="map" style=" width:100%; height:100%; "></div>
         <script>
             var map = L.map("map").setView([13.8, 100.9], 6);
-
             var sat =L.tileLayer("http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}",{
                 maxZoom: 9,
                 subdomains:['mt0','mt1','mt2','mt3']
