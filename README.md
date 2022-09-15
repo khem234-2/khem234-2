@@ -48,7 +48,6 @@
     
     <body>
         <div id="map" style=" width:100%; height:900px; "></div>
-        <script src="js/mm.js"></script>
     </body>
 
 </html>
